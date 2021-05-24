@@ -1,5 +1,6 @@
 <?php
 
+use App\MyUser;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
@@ -21,14 +22,13 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make(config('blog.admin_password')),
                 'status' => true,
                 'is_admin' => true,
-                'confirm_code' => Str::random(64),
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now()
+                'confirm_code' => Str::random(64)
             ]
         ];
 
         DB::table('users')->insert($users);
 
         factory(User::class, 10)->create();
+//        factory(MyUser::class, 10)->create();
     }
 }

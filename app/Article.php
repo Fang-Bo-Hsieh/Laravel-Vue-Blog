@@ -52,7 +52,7 @@ class Article extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new DraftScope());
+//        static::addGlobalScope(new DraftScope());
     }
 
     /**

@@ -53,15 +53,19 @@
             let i = 0
 
             item.children.forEach((child) => {
-              child.can = child.permission ? this.checkPermission(child.permission) : true
+              //child.can = child.permission ? this.checkPermission(child.permission) : true
+              child.can = true
 
               i = child.can ? i + 1 : i
             })
 
             item.can = i > 0
           } else {
-            item.can = item.permission ? this.checkPermission(item.permission) : true
+            //item.can = item.permission ? this.checkPermission(item.permission) : true
+            item.can = true
           }
+
+          console.log('item.can', item.can)
         })
 
         return menus

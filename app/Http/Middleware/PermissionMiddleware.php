@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Spatie\Permission\Exceptions\UnauthorizedException;
+//use Spatie\Permission\Exceptions\UnauthorizedException;
+use Maklad\Permission\Exceptions\UnauthorizedException;
 
 class PermissionMiddleware
 {
@@ -17,11 +18,13 @@ class PermissionMiddleware
             ? $permission
             : explode('|', $permission);
 
-        foreach ($permissions as $permission) {
-            if (app('auth')->user()->hasPermissionTo($permission) || app('auth')->user()->isSuperAdmin()) {
-                return $next($request);
-            }
-        }
+//        foreach ($permissions as $permission) {
+//            if (app('auth')->user()->hasPermissionTo($permission) || app('auth')->user()->isSuperAdmin()) {
+//                return $next($request);
+//            }
+//        }
+
+        return $next($request);
 
         throw UnauthorizedException::forPermissions($permissions);
     }

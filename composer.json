@@ -15,6 +15,7 @@
         "jcc/laravel-vote": "dev-master",
         "jellybool/flysystem-upyun": "dev-master",
         "jellybool/translug": "~2.0",
+        "jenssegers/mongodb": "v3.7.0",
         "laravel/framework": "^7.0",
         "laravel/passport": "^9.2",
         "laravel/socialite": "^4.3",

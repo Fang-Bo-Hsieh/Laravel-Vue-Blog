@@ -9,13 +9,18 @@ use App\Traits\FollowTrait;
 use App\Scopes\StatusScope;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+//use Illuminate\Database\Eloquent\SoftDeletes;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
+//use Spatie\Permission\Traits\HasRoles;
+use Maklad\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes, FollowTrait, Vote, HasRoles, Filterable;
+
+//    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be mutated to dates.
@@ -71,7 +76,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::addGlobalScope(new StatusScope());
+//        static::addGlobalScope(new StatusScope());
     }
 
     /**

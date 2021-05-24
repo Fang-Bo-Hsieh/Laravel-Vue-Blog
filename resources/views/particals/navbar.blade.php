@@ -30,9 +30,9 @@
                     <li class="nav-item notification">
                         <a class="nav-link" href="{{ url('user/notification') }}"><i class="fas fa-bell">
                             <span class="new"
-                            @if (Auth::user()->unreadNotifications->count() > 0)
+{{--                            @if (Auth::user()->unreadNotifications->count() > 0)--}}
                             style='display: block'
-                            @endif
+                            {{--@endif--}}
                             >
                             </span>
                         </i></a>

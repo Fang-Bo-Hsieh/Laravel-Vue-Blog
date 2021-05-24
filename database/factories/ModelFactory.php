@@ -17,8 +17,10 @@ use Illuminate\Support\Str;
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
+    static $id = 2;
 
     return [
+//        'id' => $id++,
         'name'           => $faker->name,
         'email'          => $faker->safeEmail,
         'status'         => true,
@@ -35,7 +37,10 @@ $factory->state(App\User::class, 'admin', function () use ($factory) {
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
+    static $id = 1;
+
     return [
+//        'id' => $id++,
         'name'      => $faker->name,
         'parent_id' => 0,
         'path'      => $faker->url
@@ -43,10 +48,12 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
-    $user_ids = \App\User::pluck('id')->random();
-    $category_ids = \App\Category::pluck('id')->random();
+    static $id = 1;
+    $user_ids = \App\User::pluck('_id')->random();
+    $category_ids = \App\Category::pluck('_id')->random();
     $title = $faker->sentence(mt_rand(3,10));
     return [
+//        'id' => $id++,
         'user_id'      => $user_ids,
         'category_id'  => $category_ids,
         'last_user_id' => $user_ids,
@@ -61,57 +68,10 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Tag::class, function (Faker\Generator $faker) {
-    return [
-        'tag'              => $faker->word,
-        'title'            => $faker->sentence,
-        'meta_description' => $faker->sentence,
-    ];
-});
-
-$factory->define(App\Discussion::class, function (Faker\Generator $faker) {
-    $user_ids = \App\User::pluck('id')->random();
-    return [
-        'user_id'      => $user_ids,
-        'last_user_id' => $user_ids,
-        'title'        => $faker->sentence,
-        'content'      => $faker->paragraph,
-        'status'       => true,
-    ];
-});
-
-$factory->define(App\Comment::class, function (Faker\Generator $faker) {
-    $user_ids = \App\User::pluck('id')->random();
-    $discussion_ids = \App\Discussion::pluck('id')->random();
-    $type = ['discussions', 'articles'];
-    return [
-        'user_id'             => $user_ids,
-        'commentable_type'    => $type[mt_rand(0, 1)],
-        'commentable_id'      => $discussion_ids,
-        'content'             => $faker->paragraph
-    ];
-});
-
 $factory->define(App\Link::class, function (Faker\Generator $faker) {
     return [
         'name'  => $faker->name,
         'link'  => $faker->url,
         'image' => $faker->imageUrl()
-    ];
-});
-
-$factory->define(App\Visitor::class, function (Faker\Generator $faker) {
-    $article_id = \App\Article::pluck('id')->random();
-    $num = $faker->numberBetween(1, 100);
-
-    $article = App\Article::find($article_id);
-    $article->view_count = $num;
-    $article->save();
-
-    return [
-        'article_id' => $article_id,
-        'ip'         => $faker->ipv4,
-        'country'    => 'CN',
-        'clicks'     => $num
     ];
 });

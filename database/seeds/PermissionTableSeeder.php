@@ -2,7 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
+//use Spatie\Permission\Models\Permission;
+use Maklad\Permission\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
 {
